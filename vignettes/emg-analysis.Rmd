@@ -1,0 +1,207 @@
+---
+title: "EMG Analysis: Preprocessing, Amplitude, and Onset Detection"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{EMG Analysis: Preprocessing, Amplitude, and Onset Detection}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(eval = FALSE)
+```
+
+## Introduction
+
+PhysioEMG provides a suite of functions for surface electromyography (EMG)
+analysis built on the PhysioExperiment data model. This vignette demonstrates
+the core workflow for EMG signal processing: creating EMG data objects,
+extracting amplitude envelopes, normalizing amplitudes, and detecting muscle
+activation onsets.
+
+## Creating EMG Data
+
+PhysioEMG includes synthetic data generators for testing and demonstration.
+The `make_emg()` function creates a multi-channel EMG PhysioExperiment with
+simulated muscle activity bursts.
+
+```{r create-data}
+library(PhysioEMG)
+
+# Create a 4-channel EMG recording at 1000 Hz
+pe <- make_emg(n_time = 2000, n_channels = 4, sr = 1000)
+pe
+
+# View the channel metadata
+SummarizedExperiment::colData(pe)
+```
+
+For testing onset detection, `make_emg_contraction()` generates a single-channel
+signal with a known contraction window:
+
+```{r create-contraction}
+pe_contraction <- make_emg_contraction(
+  n_time = 5000,
+  sr = 1000,
+  contraction_start = 0.3,
+  contraction_end = 0.7
+)
+```
+
+## Amplitude Envelope Extraction
+
+The `emgEnvelope()` function extracts the amplitude envelope using one of three
+methods:
+
+- **RMS** (root mean square): Computes RMS over a sliding window. Best for
+  general-purpose amplitude tracking.
+- **Hilbert**: Uses the analytic signal via the Hilbert transform. Provides
+  instantaneous amplitude without windowing artifacts.
+- **Lowpass**: Rectifies the signal and applies a moving-average lowpass filter.
+  A simple and computationally efficient approach.
+
+```{r envelope-rms}
+# RMS envelope with 50 ms window
+pe_env <- emgEnvelope(pe, method = "rms", window_ms = 50)
+
+# The envelope is stored as a new assay
+SummarizedExperiment::assayNames(pe_env)
+# [1] "raw"      "envelope"
+```
+
+```{r envelope-hilbert}
+# Hilbert envelope for instantaneous amplitude
+pe_hilbert <- emgEnvelope(pe, method = "hilbert", output_assay = "hilbert_env")
+```
+
+```{r envelope-lowpass}
+# Lowpass envelope with 6 Hz cutoff
+pe_lp <- emgEnvelope(pe, method = "lowpass", cutoff = 6, output_assay = "lp_env")
+```
+
+## Amplitude Normalization
+
+EMG amplitudes vary across subjects and recording sessions. Normalization
+enables meaningful comparisons. PhysioEMG supports two normalization methods
+via `emgAmplitudeNormalize()`:
+
+- **MVC** (maximum voluntary contraction): Divides by the peak of a separate
+  MVC trial, yielding percentage-of-MVC units.
+- **Peak**: Divides by the within-trial peak so each channel ranges from 0 to 1.
+
+```{r normalize-peak}
+# Peak normalization (no external reference needed)
+pe_norm <- emgAmplitudeNormalize(pe_env, method = "peak", assay_name = "envelope")
+
+# Check the normalized values range from 0 to 1
+range(SummarizedExperiment::assay(pe_norm, "normalized"))
+```
+
+```{r normalize-mvc}
+# MVC normalization requires a separate MVC trial
+mvc_trial <- make_emg(n_time = 1000, n_channels = 4, sr = 1000)
+pe_mvc <- emgAmplitudeNormalize(
+  pe_env,
+  method = "mvc",
+  mvc_data = mvc_trial,
+  assay_name = "envelope"
+)
+```
+
+## Muscle Activation Onset Detection
+
+Detecting when a muscle becomes active is fundamental to many biomechanics
+analyses. PhysioEMG implements two onset detection methods:
+
+### Hodges-Bui Method
+
+The Hodges-Bui method (1996) thresholds the rectified EMG signal at a multiple
+of baseline standard deviations. It is widely used due to its simplicity and
+robustness.
+
+```{r onset-hodges}
+pe_contraction <- make_emg_contraction(n_time = 5000, sr = 1000)
+
+# Detect onset using Hodges-Bui method
+result_hb <- emgOnsetDetect(
+  pe_contraction,
+  method = "hodges_bui",
+  threshold_sd = 3,
+  baseline_sec = 0.2,
+  min_duration_ms = 50
+)
+
+# View detected onsets
+result_hb$onsets
+# Expected: onset near 30% of signal (1.5 seconds at 1000 Hz)
+```
+
+### Teager-Kaiser Energy Operator
+
+The Teager-Kaiser method applies the Teager-Kaiser energy operator before
+thresholding. This can be more sensitive to sudden onsets because the TKEO
+responds to both amplitude and frequency changes.
+
+```{r onset-teager}
+result_tk <- emgOnsetDetect(
+  pe_contraction,
+  method = "teager_kaiser",
+  threshold_sd = 3,
+  baseline_sec = 0.2
+)
+
+result_tk$onsets
+```
+
+### Comparing Methods
+
+Both methods return onset and offset data.frames with channel, sample, and
+time information:
+
+```{r onset-compare}
+# Multi-channel onset detection
+pe_multi <- make_emg(n_time = 5000, n_channels = 4, sr = 1000)
+
+onsets_hb <- emgOnsetDetect(pe_multi, method = "hodges_bui")
+onsets_tk <- emgOnsetDetect(pe_multi, method = "teager_kaiser")
+
+# Compare onset times across methods
+merge(
+  onsets_hb$onsets, onsets_tk$onsets,
+  by = "channel", suffixes = c("_hb", "_tk")
+)
+```
+
+## Complete Workflow Example
+
+A typical EMG analysis pipeline chains these steps together:
+
+```{r workflow}
+library(PhysioEMG)
+
+# 1. Load or create EMG data
+pe <- make_emg(n_time = 5000, n_channels = 4, sr = 1000)
+
+# 2. Extract amplitude envelope
+pe <- emgEnvelope(pe, method = "rms", window_ms = 50)
+
+# 3. Normalize amplitudes
+pe <- emgAmplitudeNormalize(pe, method = "peak", assay_name = "envelope")
+
+# 4. Detect muscle activation onsets
+onsets <- emgOnsetDetect(pe, method = "hodges_bui", threshold_sd = 3)
+
+# 5. Review results
+print(onsets$onsets)
+print(onsets$offsets)
+```
+
+## References
+
+- De Luca, C.J. (1997). "The use of surface electromyography in biomechanics."
+  Journal of Applied Biomechanics, 13(2), 135-163.
+- Hodges, P.W. & Bui, B.H. (1996). "A comparison of computer-based methods for
+  the determination of onset of muscle contraction using electromyography."
+  Electroencephalography and Clinical Neurophysiology, 101(6), 511-519.
+- Merletti, R. & Parker, P.A. (2004). "Electromyography: Physiology,
+  Engineering, and Non-Invasive Applications." Wiley-IEEE Press.

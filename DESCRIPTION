@@ -1,0 +1,41 @@
+Package: PhysioEMG
+Title: EMG Analysis Functions for PhysioExperiment Objects
+Version: 0.2.0
+Authors@R:
+    person(given = "Yusuke",
+           family = "Matsui",
+           role = c("aut", "cre"),
+           email = "mail.to.matsui@gmail.com")
+Author: Yusuke Matsui
+Maintainer: Yusuke Matsui <mail.to.matsui@gmail.com>
+Description: Provides electromyography (EMG) analysis functions for
+    PhysioExperiment objects. Includes envelope extraction (RMS, Hilbert),
+    muscle activation onset detection (Hodges-Bui, Teager-Kaiser),
+    fatigue analysis (median frequency shift), and muscle synergy
+    decomposition (NMF, PCA, ICA).
+Depends:
+    R (>= 4.2),
+    PhysioCore
+Imports:
+    SummarizedExperiment,
+    S4Vectors,
+    stats
+Suggests:
+    signal,
+    testthat (>= 3.2.0),
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+Collate:
+    'emg-amplitude.R'
+    'emg-data.R'
+    'emg-onset.R'
+    'emg-fatigue.R'
+    'emg-decompose.R'
+    'emg-network.R'
+    'zzz.R'
+RoxygenNote: 7.3.3
