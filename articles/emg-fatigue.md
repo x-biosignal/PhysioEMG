@@ -1,0 +1,286 @@
+# EMG Fatigue Analysis and Muscle Synergy Decomposition
+
+## Introduction
+
+This vignette covers two advanced EMG analysis capabilities in
+PhysioEMG:
+
+1.  **Fatigue analysis**: Tracking spectral changes over time during
+    sustained contractions to quantify muscle fatigue.
+2.  **Muscle synergy decomposition**: Extracting coordinated muscle
+    activation patterns from multi-channel EMG using matrix
+    factorization methods.
+
+## Fatigue Analysis
+
+Muscle fatigue during sustained contractions causes a well-documented
+shift in the EMG power spectrum toward lower frequencies. This occurs
+because fatigued motor units have reduced conduction velocity, which
+compresses the spectral content. PhysioEMG provides tools to track this
+shift and quantify fatigue.
+
+### Creating Fatigue Test Data
+
+The
+[`make_emg_fatigue()`](https://x-biosignal.github.io/PhysioEMG/reference/make_emg_fatigue.md)
+generator creates synthetic EMG with progressively decreasing median
+frequency, simulating a fatiguing isometric contraction:
+
+``` r
+
+library(PhysioEMG)
+
+pe_fatigue <- make_emg_fatigue(n_time = 10000, sr = 1000)
+pe_fatigue
+# 10 seconds of data at 1000 Hz, single channel
+```
+
+### Windowed Fatigue Tracking
+
+The
+[`emgFatigue()`](https://x-biosignal.github.io/PhysioEMG/reference/emgFatigue.md)
+function divides the signal into overlapping windows and computes the
+median frequency and mean frequency for each window. A declining trend
+in median frequency over time indicates fatigue.
+
+``` r
+
+fatigue_results <- emgFatigue(
+  pe_fatigue,
+  window_sec = 1.0,
+  overlap = 0.5
+)
+
+head(fatigue_results)
+# Columns: channel, window, time_sec, median_freq, mean_freq, rms_amplitude
+```
+
+The `window_sec` parameter controls the analysis window length. Longer
+windows provide more stable frequency estimates but lower temporal
+resolution. The `overlap` parameter (0 to 1) controls how much adjacent
+windows overlap:
+
+``` r
+
+# Higher temporal resolution with shorter windows and more overlap
+fatigue_fine <- emgFatigue(pe_fatigue, window_sec = 0.5, overlap = 0.75)
+
+# Lower resolution with longer windows
+fatigue_coarse <- emgFatigue(pe_fatigue, window_sec = 2.0, overlap = 0.5)
+```
+
+### Fatigue Index
+
+The
+[`emgFatigueIndex()`](https://x-biosignal.github.io/PhysioEMG/reference/emgFatigueIndex.md)
+function provides a single summary metric by comparing the median
+frequency at the beginning and end of the recording. A fatigue index
+less than 1 indicates frequency decrease (fatigue), while a value near 1
+suggests no fatigue.
+
+``` r
+
+fi <- emgFatigueIndex(pe_fatigue, initial_pct = 0.2, final_pct = 0.2)
+fi
+# Columns: channel, fatigue_index, initial_mdf, final_mdf
+
+# fatigue_index < 1 indicates fatigue
+# initial_mdf > final_mdf confirms spectral compression
+```
+
+The `initial_pct` and `final_pct` parameters control what proportion of
+the signal is used for the initial and final frequency estimates. Larger
+values provide more stable estimates but may blur transient changes.
+
+### Spectral Moments
+
+For more detailed spectral characterization,
+[`emgSpectralMoments()`](https://x-biosignal.github.io/PhysioEMG/reference/emgSpectralMoments.md)
+computes the zeroth (M0, total power), first (M1), and second (M2)
+spectral moments over sliding windows:
+
+``` r
+
+moments <- emgSpectralMoments(pe_fatigue, window_sec = 1.0, overlap = 0.5)
+head(moments)
+# Columns: channel, window, m0, m1, m2
+
+# Derive mean frequency from moments
+moments$mean_freq <- moments$m1 / moments$m0
+```
+
+The mean frequency derived from spectral moments (M1/M0) is
+mathematically equivalent to the mean frequency reported by
+[`emgFatigue()`](https://x-biosignal.github.io/PhysioEMG/reference/emgFatigue.md).
+
+## Muscle Synergy Decomposition
+
+Muscle synergy analysis decomposes multi-channel EMG into a small number
+of coordinated activation patterns (synergies). Each synergy consists of
+a weight vector (which muscles participate) and an activation profile
+(when the synergy is active). This approach is based on the motor
+control hypothesis that the nervous system simplifies movement by
+activating muscles in fixed groups.
+
+### Decomposition Methods
+
+PhysioEMG supports three decomposition methods via
+[`muscleSynergy()`](https://x-biosignal.github.io/PhysioEMG/reference/muscleSynergy.md):
+
+- **NMF** (non-negative matrix factorization): Constrains both weights
+  and activations to be non-negative, which is physiologically
+  appropriate for rectified EMG. This is the most commonly used method
+  for synergy extraction.
+- **PCA** (principal component analysis): Finds orthogonal components
+  that explain maximum variance. Fast but allows negative values.
+- **ICA** (independent component analysis): Finds statistically
+  independent components. Useful when synergies may overlap temporally.
+
+### NMF Synergy Extraction
+
+``` r
+
+# Create multi-channel EMG (8 muscles)
+pe_multi <- make_emg(n_time = 2000, n_channels = 8, sr = 1000)
+
+# Extract 3 synergies using NMF
+syn_nmf <- muscleSynergy(
+  pe_multi,
+  n_synergies = 3,
+  method = "nmf",
+  max_iter = 200,
+  tol = 1e-4
+)
+
+# Examine results
+str(syn_nmf)
+# W: 3 x 8 weight matrix (synergies x muscles)
+# H: 2000 x 3 activation matrix (time x synergies)
+# vaf: variance accounted for (0-1)
+# method: "nmf"
+
+cat("Variance accounted for:", round(syn_nmf$vaf, 3), "\n")
+```
+
+### PCA and ICA Methods
+
+``` r
+
+# PCA decomposition
+syn_pca <- muscleSynergy(pe_multi, n_synergies = 3, method = "pca")
+
+# ICA decomposition
+syn_ica <- muscleSynergy(pe_multi, n_synergies = 3, method = "ica")
+
+# Compare VAF across methods
+cat("NMF VAF:", round(syn_nmf$vaf, 3), "\n")
+cat("PCA VAF:", round(syn_pca$vaf, 3), "\n")
+cat("ICA VAF:", round(syn_ica$vaf, 3), "\n")
+```
+
+### Determining the Number of Synergies
+
+A common approach is to extract synergies for increasing numbers and
+look for the “elbow” in the VAF curve, or use a VAF threshold (e.g.,
+0.90):
+
+``` r
+
+vaf_values <- numeric(6)
+for (n in 1:6) {
+  result <- muscleSynergy(pe_multi, n_synergies = n, method = "nmf")
+  vaf_values[n] <- result$vaf
+}
+
+# Find minimum synergies for 90% VAF
+n_selected <- which(vaf_values >= 0.90)[1]
+cat("Selected", n_selected, "synergies (VAF =", round(vaf_values[n_selected], 3), ")\n")
+```
+
+### Synergy Reconstruction
+
+Use
+[`synergyReconstruct()`](https://x-biosignal.github.io/PhysioEMG/reference/synergyReconstruct.md)
+to reconstruct the EMG signal from a subset of synergies. This helps
+verify the quality of the decomposition and test how many synergies are
+needed to adequately represent the data:
+
+``` r
+
+# Full decomposition with 4 synergies
+syn_full <- muscleSynergy(pe_multi, n_synergies = 4, method = "nmf")
+
+# Reconstruct using only 2 synergies
+recon_2 <- synergyReconstruct(syn_full, n_synergies = 2)
+cat("VAF with 2 synergies:", round(recon_2$vaf, 3), "\n")
+
+# Reconstruct using 3 synergies
+recon_3 <- synergyReconstruct(syn_full, n_synergies = 3)
+cat("VAF with 3 synergies:", round(recon_3$vaf, 3), "\n")
+
+# Reconstruct using all 4
+recon_4 <- synergyReconstruct(syn_full, n_synergies = 4)
+cat("VAF with 4 synergies:", round(recon_4$vaf, 3), "\n")
+```
+
+### Comparing Synergy Solutions
+
+When comparing synergies across conditions, subjects, or decomposition
+methods, use
+[`synergyCompare()`](https://x-biosignal.github.io/PhysioEMG/reference/synergyCompare.md).
+It computes pairwise correlations between synergy weight vectors and
+finds the best-match pairing:
+
+``` r
+
+# Extract synergies from two conditions
+syn_a <- muscleSynergy(pe_multi, n_synergies = 3, method = "nmf")
+syn_b <- muscleSynergy(pe_multi, n_synergies = 3, method = "nmf")
+
+# Compare the weight vectors
+comparison <- synergyCompare(syn_a, syn_b)
+comparison
+# Columns: synergy1, synergy2, correlation
+# High correlations (> 0.8) indicate similar synergies
+```
+
+## Complete Fatigue and Synergy Workflow
+
+``` r
+
+library(PhysioEMG)
+
+# --- Fatigue Analysis ---
+pe_fatigue <- make_emg_fatigue(n_time = 10000, sr = 1000)
+
+# Track frequency shift
+fatigue <- emgFatigue(pe_fatigue, window_sec = 1.0, overlap = 0.5)
+
+# Summary fatigue metric
+fi <- emgFatigueIndex(pe_fatigue)
+cat("Fatigue index:", round(fi$fatigue_index, 3), "\n")
+
+# Spectral moments for additional characterization
+moments <- emgSpectralMoments(pe_fatigue, window_sec = 1.0, overlap = 0.5)
+
+# --- Synergy Decomposition ---
+pe_multi <- make_emg(n_time = 2000, n_channels = 8, sr = 1000)
+
+# Extract synergies
+syn <- muscleSynergy(pe_multi, n_synergies = 3, method = "nmf")
+cat("Synergy VAF:", round(syn$vaf, 3), "\n")
+
+# Validate with reconstruction
+recon <- synergyReconstruct(syn, n_synergies = 2)
+cat("Reconstruction VAF (2 synergies):", round(recon$vaf, 3), "\n")
+```
+
+## References
+
+- De Luca, C.J. (1984). “Myoelectrical manifestations of localized
+  muscular fatigue in humans.” Critical Reviews in Biomedical
+  Engineering, 11(4), 251-279.
+- De Luca, C.J. (1997). “The use of surface electromyography in
+  biomechanics.” Journal of Applied Biomechanics, 13(2), 135-163.
+- Merletti, R. & Parker, P.A. (2004). “Electromyography: Physiology,
+  Engineering, and Non-Invasive Applications.” Wiley-IEEE Press.
