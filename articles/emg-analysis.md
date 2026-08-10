@@ -100,8 +100,9 @@ range(SummarizedExperiment::assay(pe_norm, "normalized"))
 
 ``` r
 
-# MVC normalization requires a separate MVC trial
-mvc_trial <- make_emg(n_time = 1000, n_channels = 4, sr = 1000)
+# MVC normalization requires a separate MVC trial, enveloped the same way as the
+# working data so both carry the assay named in `assay_name` ("envelope").
+mvc_trial <- emgEnvelope(make_emg(n_time = 1000, n_channels = 4, sr = 1000))
 pe_mvc <- emgAmplitudeNormalize(
   pe_env,
   method = "mvc",

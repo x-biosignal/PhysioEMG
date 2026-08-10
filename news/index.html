@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">PhysioEMG</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,6 +55,15 @@
       <small>Source: <a href="https://github.com/x-biosignal/PhysioEMG/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.2.3" id="physioemg-023">PhysioEMG 0.2.3<a class="anchor" aria-label="anchor" href="#physioemg-023"></a></h2>
+<ul><li>Documentation: the <code>emg-analysis</code> vignette now envelopes the MVC reference trial before MVC amplitude normalization, so both the working data and the reference carry the <code>"envelope"</code> assay that <code><a href="../reference/emgAmplitudeNormalize.html">emgAmplitudeNormalize()</a></code> reads. The vignette now runs clean. No functional change to the package.</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.2.2" id="physioemg-022">PhysioEMG 0.2.2<a class="anchor" aria-label="anchor" href="#physioemg-022"></a></h2>
+<ul><li>
+<code><a href="../reference/emgEnvelope.html">emgEnvelope()</a></code> now records a W3C-PROV provenance activity (via the shared <code>.recordProv</code> helper, matching the PhysioPreprocess pattern), so the envelope step is visible to the reproducibility substrate’s run-tracing. No change to the computed envelope.</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.1" id="physioemg-021">PhysioEMG 0.2.1<a class="anchor" aria-label="anchor" href="#physioemg-021"></a></h2>
 <div class="section level3">

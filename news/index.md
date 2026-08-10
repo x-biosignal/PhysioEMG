@@ -1,5 +1,22 @@
 # Changelog
 
+## PhysioEMG 0.2.3
+
+- Documentation: the `emg-analysis` vignette now envelopes the MVC
+  reference trial before MVC amplitude normalization, so both the
+  working data and the reference carry the `"envelope"` assay that
+  [`emgAmplitudeNormalize()`](https://x-biosignal.github.io/PhysioEMG/reference/emgAmplitudeNormalize.md)
+  reads. The vignette now runs clean. No functional change to the
+  package.
+
+## PhysioEMG 0.2.2
+
+- [`emgEnvelope()`](https://x-biosignal.github.io/PhysioEMG/reference/emgEnvelope.md)
+  now records a W3C-PROV provenance activity (via the shared
+  `.recordProv` helper, matching the PhysioPreprocess pattern), so the
+  envelope step is visible to the reproducibility substrate’s
+  run-tracing. No change to the computed envelope.
+
 ## PhysioEMG 0.2.1
 
 ### Bug fixes
