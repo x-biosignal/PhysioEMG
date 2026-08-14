@@ -2,6 +2,8 @@
 
 ## All functions
 
+- [`convolutiveSynergy()`](https://x-biosignal.github.io/PhysioEMG/reference/convolutiveSynergy.md)
+  : Time-varying (convolutive) muscle synergies
 - [`emgAmplitudeFeatures()`](https://x-biosignal.github.io/PhysioEMG/reference/emgAmplitudeFeatures.md)
   : EMG Amplitude Features (ARV, MAV, iEMG, RMS)
 - [`emgAmplitudeNormalize()`](https://x-biosignal.github.io/PhysioEMG/reference/emgAmplitudeNormalize.md)

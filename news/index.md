@@ -1,5 +1,14 @@
 # Changelog
 
+## PhysioEMG 0.2.5
+
+- Time-varying (convolutive) muscle synergies (`R/emg-convolutive.R`):
+  [`convolutiveSynergy()`](https://x-biosignal.github.io/PhysioEMG/reference/convolutiveSynergy.md)
+  extracts shift-invariant `muscle x time` spatiotemporal synergy
+  templates by convolutive NMF (d’Avella & Bizzi 2003; Smaragdis 2004) —
+  the temporal-structure complement to spatial NMF and the trial-mode
+  tensor.
+
 ## PhysioEMG 0.2.4
 
 - Non-negative tensor factorisation of muscle synergies
