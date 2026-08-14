@@ -260,12 +260,16 @@ Community and policy documents live in the umbrella repository:
   : Create EMG PhysioExperiment with Fatigue Progression
 - [`muscleSynergy()`](https://x-biosignal.github.io/PhysioEMG/reference/muscleSynergy.md)
   : Muscle Synergy Decomposition
+- [`muscleSynergyMixture()`](https://x-biosignal.github.io/PhysioEMG/reference/muscleSynergyMixture.md)
+  : Mixture-based muscle synergy analysis
 - [`muscleSynergyOrder()`](https://x-biosignal.github.io/PhysioEMG/reference/muscleSynergyOrder.md)
   : Select Muscle Synergy Model Order
 - [`muscleSynergyTensor()`](https://x-biosignal.github.io/PhysioEMG/reference/muscleSynergyTensor.md)
   : Muscle-synergy tensor decomposition (non-negative PARAFAC)
 - [`muscleSynergyTensorOrder()`](https://x-biosignal.github.io/PhysioEMG/reference/muscleSynergyTensorOrder.md)
   : Select the number of tensor synergies by a VAF threshold
+- [`physioSynergyMixture()`](https://x-biosignal.github.io/PhysioEMG/reference/physioSynergyMixture.md)
+  : Mixture-based muscle synergy analysis on PhysioExperiment objects
 - [`plotCoactivation()`](https://x-biosignal.github.io/PhysioEMG/reference/plotCoactivation.md)
   : Plot Agonist-Antagonist Co-Activation
 - [`plotEmgEnvelope()`](https://x-biosignal.github.io/PhysioEMG/reference/plotEmgEnvelope.md)

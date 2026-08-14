@@ -1,5 +1,16 @@
 # Changelog
 
+## PhysioEMG 0.2.6
+
+- Mixture-based muscle synergy analysis (`R/emg-synergy-mixture.R`):
+  [`muscleSynergyMixture()`](https://x-biosignal.github.io/PhysioEMG/reference/muscleSynergyMixture.md)
+  fits a mixture of factor analysers to per-subject muscle activation to
+  identify subgroups of subjects with distinct synergy structure (each
+  cluster’s loadings = that subgroup’s synergies), instead of a single
+  global model. A single-function distillation of the method in the
+  synergyMixR package (Matsui); algorithm after Ghahramani & Hinton
+  (1996).
+
 ## PhysioEMG 0.2.5
 
 - Time-varying (convolutive) muscle synergies (`R/emg-convolutive.R`):

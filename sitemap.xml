@@ -39,9 +39,11 @@
 <url><loc>https://x-biosignal.github.io/PhysioEMG/reference/make_emg_contraction.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioEMG/reference/make_emg_fatigue.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioEMG/reference/muscleSynergy.html</loc></url>
+<url><loc>https://x-biosignal.github.io/PhysioEMG/reference/muscleSynergyMixture.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioEMG/reference/muscleSynergyOrder.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioEMG/reference/muscleSynergyTensor.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioEMG/reference/muscleSynergyTensorOrder.html</loc></url>
+<url><loc>https://x-biosignal.github.io/PhysioEMG/reference/physioSynergyMixture.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioEMG/reference/plotCoactivation.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioEMG/reference/plotEmgEnvelope.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioEMG/reference/plotEmgFatigue.html</loc></url>
