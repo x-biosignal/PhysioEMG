@@ -68,9 +68,13 @@ noise), `mean` (per-cluster mean), `proportions` (mixing weights),
 
 ## References
 
+Matsui Y. Mixture-Based Muscle Synergy Analysis. SSRN preprint.
+<https://ssrn.com/abstract=6798399>
+
 Ghahramani Z, Hinton GE (1996). The EM algorithm for mixtures of factor
-analyzers. Technical Report CRG-TR-96-1, University of Toronto. Matsui
-Y. synergyMixR: Mixture-Based Muscle Synergy Analysis.
+analyzers. Technical Report CRG-TR-96-1, University of Toronto.
+
+Matsui Y. synergyMixR: Mixture-Based Muscle Synergy Analysis.
 <https://github.com/matsui-lab/synergyMixR>
 
 ## Examples
