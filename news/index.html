@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">PhysioEMG</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,6 +55,15 @@
       <small>Source: <a href="https://github.com/x-biosignal/PhysioEMG/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.2.4" id="physioemg-024">PhysioEMG 0.2.4<a class="anchor" aria-label="anchor" href="#physioemg-024"></a></h2>
+<ul><li>Non-negative tensor factorisation of muscle synergies (<code>R/emg-tensor.R</code>):
+<ul><li>
+<code><a href="../reference/muscleSynergyTensor.html">muscleSynergyTensor()</a></code> — non-negative CANDECOMP/PARAFAC of a <code>muscle x time x trial</code> EMG tensor (each synergy = muscle weights x temporal profile x per-trial loading), the multiway generalisation of spatial-NMF muscle synergies.</li>
+<li>
+<code><a href="../reference/muscleSynergyTensorOrder.html">muscleSynergyTensorOrder()</a></code> — VAF-threshold selection of the synergy count.</li>
+</ul></li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.3" id="physioemg-023">PhysioEMG 0.2.3<a class="anchor" aria-label="anchor" href="#physioemg-023"></a></h2>
 <ul><li>Documentation: the <code>emg-analysis</code> vignette now envelopes the MVC reference trial before MVC amplitude normalization, so both the working data and the reference carry the <code>"envelope"</code> assay that <code><a href="../reference/emgAmplitudeNormalize.html">emgAmplitudeNormalize()</a></code> reads. The vignette now runs clean. No functional change to the package.</li>

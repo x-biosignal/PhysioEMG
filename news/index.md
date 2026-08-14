@@ -1,5 +1,17 @@
 # Changelog
 
+## PhysioEMG 0.2.4
+
+- Non-negative tensor factorisation of muscle synergies
+  (`R/emg-tensor.R`):
+  - [`muscleSynergyTensor()`](https://x-biosignal.github.io/PhysioEMG/reference/muscleSynergyTensor.md)
+    — non-negative CANDECOMP/PARAFAC of a `muscle x time x trial` EMG
+    tensor (each synergy = muscle weights x temporal profile x per-trial
+    loading), the multiway generalisation of spatial-NMF muscle
+    synergies.
+  - [`muscleSynergyTensorOrder()`](https://x-biosignal.github.io/PhysioEMG/reference/muscleSynergyTensorOrder.md)
+    — VAF-threshold selection of the synergy count.
+
 ## PhysioEMG 0.2.3
 
 - Documentation: the `emg-analysis` vignette now envelopes the MVC
