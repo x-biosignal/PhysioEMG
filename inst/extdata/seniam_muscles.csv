@@ -1,0 +1,33 @@
+muscle,location,orientation,ied_mm
+Trapezius descendens,"At 1/2 on the line from the acromion to the C7 spinous process",Towards the spine,20
+Trapezius transversalis,"At 1/2 between the medial border of the scapula and the spine, at T3",Towards the spine,20
+Trapezius ascendens,"At 2/3 on the line from the spine (T8) to the acromion",Towards the acromion,20
+Deltoideus anterior,"One finger width distal and anterior to the acromion",Towards the thumb,20
+Deltoideus medius,"From the acromion to the lateral epicondyle at greatest bulge",Vertically over the muscle,20
+Deltoideus posterior,"About two finger widths behind the angle of the acromion",Towards the little finger,20
+Biceps brachii,"On the line between the medial acromion and the fossa cubit at 1/3 from the fossa cubit",In the direction of the line to the acromion,20
+Triceps brachii,"At 1/2 on the line between the posterior acromion and the olecranon at 2 finger widths medial",In the direction of the line to the acromion,20
+Brachioradialis,"At 1/4 on the line from the medial epicondyle to the styloid process of the radius",Along the forearm,20
+Flexor carpi radialis,"At 1/3 on the line from the medial epicondyle to the radial styloid",Along the forearm,20
+Extensor carpi radialis,"At 1/3 on the line from the lateral epicondyle to the second metacarpal",Along the forearm,20
+Pectoralis major,"On the line between the axilla and the nipple, over the muscle belly",Along the muscle fibres,20
+Latissimus dorsi,"About 4 cm below the inferior tip of the scapula, over the muscle belly",Along the muscle fibres,20
+Serratus anterior,"Anterior to latissimus dorsi at the level of the inferior scapular angle",Along the muscle fibres,20
+Rectus abdominis,"About 2-3 cm lateral to the umbilicus, over the muscle belly",Vertical,20
+Obliquus externus,"Below the rib cage, along a line to the contralateral pubic bone",Diagonally along the fibres,20
+Obliquus internus,"Just medial to the anterior superior iliac spine, below the aponeurosis",Transverse-diagonal,20
+Erector spinae longissimus,"About 2 finger widths lateral to the spinous process at L1",Vertical,20
+Erector spinae iliocostalis,"About 1 finger width medial from the line SIAS-lowest rib at L2",Vertical,20
+Multifidus,"About 2-3 cm lateral to the L5 spinous process",Towards the spine,20
+Gluteus maximus,"At 1/2 on the line between the sacral vertebrae and the greater trochanter",In the direction of the line,20
+Gluteus medius,"At 1/2 on the line from the iliac crest to the greater trochanter",Towards the trochanter,20
+Rectus femoris,"At 1/2 on the line from the anterior spina iliaca superior to the patella",Along the thigh,20
+Vastus lateralis,"At 2/3 on the line from the anterior spina iliaca superior to the lateral patella",Slightly oblique to the femur,20
+Vastus medialis,"At 80% on the line from the ASIS to the joint space anterior to the medial ligament",Almost perpendicular to the femur,20
+Biceps femoris,"At 1/2 on the line between the ischial tuberosity and the lateral epicondyle of the tibia",Along the line to the tuberosity,20
+Semitendinosus,"At 1/2 on the line between the ischial tuberosity and the medial epicondyle of the tibia",Along the line to the tuberosity,20
+Tibialis anterior,"At 1/3 on the line between the tip of the fibula and the tip of the medial malleolus",Along the tibia,20
+Gastrocnemius medialis,"On the most prominent bulge of the muscle, medial head",Along the leg,20
+Gastrocnemius lateralis,"At 1/3 on the line between the head of the fibula and the heel",Along the leg,20
+Soleus,"At 2/3 on the line between the medial condyle of the femur and the medial malleolus",Along the leg,20
+Peroneus longus,"At 1/4 on the line between the tip of the fibula and the lateral malleolus",Along the fibula,20

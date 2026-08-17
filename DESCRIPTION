@@ -1,0 +1,58 @@
+Package: PhysioEMG
+Title: EMG Analysis Functions for PhysioExperiment Objects
+Version: 0.4.0
+Authors@R:
+    person(given = "Yusuke",
+           family = "Matsui",
+           role = c("aut", "cre"),
+           email = "mail.to.matsui@gmail.com")
+Description: Provides electromyography (EMG) analysis functions for
+    PhysioExperiment objects. Includes envelope extraction (RMS, Hilbert),
+    muscle activation onset detection (Hodges-Bui, Teager-Kaiser),
+    fatigue analysis (median frequency shift), and muscle synergy
+    decomposition (NMF, PCA, ICA).
+Depends:
+    R (>= 4.2),
+    PhysioCore
+Imports:
+    SummarizedExperiment,
+    S4Vectors,
+    stats,
+    ggplot2,
+    patchwork
+Suggests:
+    signal,
+    PhysioECG,
+    PhysioHDEMG,
+    testthat (>= 3.2.0),
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+Collate:
+    'utils-provenance.R'
+    'emg-amplitude.R'
+    'emg-features.R'
+    'emg-data.R'
+    'emg-onset.R'
+    'emg-fatigue.R'
+    'emg-mfcv.R'
+    'emg-cocontraction.R'
+    'emg-decompose.R'
+    'emg-tensor.R'
+    'emg-convolutive.R'
+    'emg-synergy-mixture.R'
+    'emg-hdemg-bridge.R'
+    'emg-quality.R'
+    'emg-seniam.R'
+    'emg-plot.R'
+    'emg-network.R'
+    'emg-adl.R'
+    'emg-spacetime.R'
+    'zzz.R'
+RoxygenNote: 7.3.3
+URL: https://github.com/x-biosignal/PhysioEMG, https://x-biosignal.r-universe.dev/PhysioEMG, https://x-biosignal.github.io/PhysioEMG/
+BugReports: https://github.com/x-biosignal/PhysioEMG/issues
