@@ -1,5 +1,15 @@
 # Changelog
 
+## PhysioEMG 0.3.0
+
+- [`emgADLActivation()`](https://x-biosignal.github.io/PhysioEMG/reference/emgADLActivation.md):
+  EMG muscle-activation summary of an ADL task – the agonist/antagonist
+  co-contraction index (guarded/inefficient movement), each muscle’s
+  peak and mean activation (percent-MVC when a maximal reference is
+  given) and its active-time fraction – labelled with the ICF code the
+  task realises. Answers HOW a task is performed, complementing the
+  clinical scales.
+
 ## PhysioEMG 0.2.6
 
 - Mixture-based muscle synergy analysis (`R/emg-synergy-mixture.R`):

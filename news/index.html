@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">PhysioEMG</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.7</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,6 +55,11 @@
       <small>Source: <a href="https://github.com/x-biosignal/PhysioEMG/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.3.0" id="physioemg-030">PhysioEMG 0.3.0<a class="anchor" aria-label="anchor" href="#physioemg-030"></a></h2>
+<ul><li>
+<code><a href="../reference/emgADLActivation.html">emgADLActivation()</a></code>: EMG muscle-activation summary of an ADL task – the agonist/antagonist co-contraction index (guarded/inefficient movement), each muscle’s peak and mean activation (percent-MVC when a maximal reference is given) and its active-time fraction – labelled with the ICF code the task realises. Answers HOW a task is performed, complementing the clinical scales.</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.6" id="physioemg-026">PhysioEMG 0.2.6<a class="anchor" aria-label="anchor" href="#physioemg-026"></a></h2>
 <ul><li>Mixture-based muscle synergy analysis (<code>R/emg-synergy-mixture.R</code>): <code><a href="../reference/muscleSynergyMixture.html">muscleSynergyMixture()</a></code> fits a mixture of factor analysers to per-subject muscle activation to identify subgroups of subjects with distinct synergy structure (each cluster’s loadings = that subgroup’s synergies), instead of a single global model. A single-function distillation of the method in the synergyMixR package (Matsui); algorithm after Ghahramani &amp; Hinton (1996).</li>

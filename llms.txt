@@ -206,6 +206,8 @@ Community and policy documents live in the umbrella repository:
 
 - [`convolutiveSynergy()`](https://x-biosignal.github.io/PhysioEMG/reference/convolutiveSynergy.md)
   : Time-varying (convolutive) muscle synergies
+- [`emgADLActivation()`](https://x-biosignal.github.io/PhysioEMG/reference/emgADLActivation.md)
+  : EMG muscle-activation summary of an ADL task
 - [`emgAmplitudeFeatures()`](https://x-biosignal.github.io/PhysioEMG/reference/emgAmplitudeFeatures.md)
   : EMG Amplitude Features (ARV, MAV, iEMG, RMS)
 - [`emgAmplitudeNormalize()`](https://x-biosignal.github.io/PhysioEMG/reference/emgAmplitudeNormalize.md)
