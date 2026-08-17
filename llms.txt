@@ -282,14 +282,20 @@ Community and policy documents live in the umbrella repository:
   : Plot EMG Activation Onsets and Offsets
 - [`plotSynergy()`](https://x-biosignal.github.io/PhysioEMG/reference/plotSynergy.md)
   : Plot Muscle Synergies
+- [`reconstructTucker()`](https://x-biosignal.github.io/PhysioEMG/reference/reconstructTucker.md)
+  : Reconstruct a Tucker model (helper)
 - [`seniamMuscles()`](https://x-biosignal.github.io/PhysioEMG/reference/seniamMuscles.md)
   : SENIAM Muscle Catalog
 - [`setEMGElectrode()`](https://x-biosignal.github.io/PhysioEMG/reference/setEMGElectrode.md)
   : Set SENIAM Electrode Metadata
+- [`spaceByTimeSynergy()`](https://x-biosignal.github.io/PhysioEMG/reference/spaceByTimeSynergy.md)
+  : Space-by-time muscle synergy decomposition (sNM3F)
 - [`synergyCompare()`](https://x-biosignal.github.io/PhysioEMG/reference/synergyCompare.md)
   : Compare Two Synergy Results
 - [`synergyReconstruct()`](https://x-biosignal.github.io/PhysioEMG/reference/synergyReconstruct.md)
   : Reconstruct Data from Synergies
+- [`tuckerSynergy()`](https://x-biosignal.github.io/PhysioEMG/reference/tuckerSynergy.md)
+  : Non-negative Tucker (hierarchical) muscle-synergy decomposition
 
 # Articles
 
