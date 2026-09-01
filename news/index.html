@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">PhysioEMG</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,6 +55,13 @@
       <small>Source: <a href="https://github.com/x-biosignal/PhysioEMG/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.4.1" id="physioemg-041">PhysioEMG 0.4.1<a class="anchor" aria-label="anchor" href="#physioemg-041"></a></h2>
+<ul><li>
+<code><a href="../reference/coordinationNetwork.html">coordinationNetwork()</a></code>: a single entry point over the four inter-muscle connectivity estimators (<code><a href="../reference/emgCoherenceNetwork.html">emgCoherenceNetwork()</a></code>, <code><a href="../reference/emgPartialCoherenceNetwork.html">emgPartialCoherenceNetwork()</a></code>, <code><a href="../reference/emgWPLINetwork.html">emgWPLINetwork()</a></code>, <code><a href="../reference/emgDirectedGCNetwork.html">emgDirectedGCNetwork()</a></code>), building the coordination network of a multi-muscle recording with a chosen <code>method</code> and routing the relevant parameters (spectral window, wPLI debiasing, Granger model order) to the underlying estimator.</li>
+<li>
+<code><a href="../reference/splitHalfStability.html">splitHalfStability()</a></code>: split-half reproducibility of inter-muscle coordination networks – split the recording, build a <code><a href="../reference/coordinationNetwork.html">coordinationNetwork()</a></code> on each half with each estimator, and correlate edge weights and node strengths between the halves, to tell real coordination structure from a split-specific artefact.</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.0" id="physioemg-030">PhysioEMG 0.3.0<a class="anchor" aria-label="anchor" href="#physioemg-030"></a></h2>
 <ul><li>

@@ -1,5 +1,25 @@
 # Changelog
 
+## PhysioEMG 0.4.1
+
+- [`coordinationNetwork()`](https://x-biosignal.github.io/PhysioEMG/reference/coordinationNetwork.md):
+  a single entry point over the four inter-muscle connectivity
+  estimators
+  ([`emgCoherenceNetwork()`](https://x-biosignal.github.io/PhysioEMG/reference/emgCoherenceNetwork.md),
+  [`emgPartialCoherenceNetwork()`](https://x-biosignal.github.io/PhysioEMG/reference/emgPartialCoherenceNetwork.md),
+  [`emgWPLINetwork()`](https://x-biosignal.github.io/PhysioEMG/reference/emgWPLINetwork.md),
+  [`emgDirectedGCNetwork()`](https://x-biosignal.github.io/PhysioEMG/reference/emgDirectedGCNetwork.md)),
+  building the coordination network of a multi-muscle recording with a
+  chosen `method` and routing the relevant parameters (spectral window,
+  wPLI debiasing, Granger model order) to the underlying estimator.
+- [`splitHalfStability()`](https://x-biosignal.github.io/PhysioEMG/reference/splitHalfStability.md):
+  split-half reproducibility of inter-muscle coordination networks –
+  split the recording, build a
+  [`coordinationNetwork()`](https://x-biosignal.github.io/PhysioEMG/reference/coordinationNetwork.md)
+  on each half with each estimator, and correlate edge weights and node
+  strengths between the halves, to tell real coordination structure from
+  a split-specific artefact.
+
 ## PhysioEMG 0.3.0
 
 - [`emgADLActivation()`](https://x-biosignal.github.io/PhysioEMG/reference/emgADLActivation.md):

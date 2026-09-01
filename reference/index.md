@@ -4,6 +4,8 @@
 
 - [`convolutiveSynergy()`](https://x-biosignal.github.io/PhysioEMG/reference/convolutiveSynergy.md)
   : Time-varying (convolutive) muscle synergies
+- [`coordinationNetwork()`](https://x-biosignal.github.io/PhysioEMG/reference/coordinationNetwork.md)
+  : Build an inter-muscle coordination network with a chosen estimator
 - [`emgADLActivation()`](https://x-biosignal.github.io/PhysioEMG/reference/emgADLActivation.md)
   : EMG muscle-activation summary of an ADL task
 - [`emgAmplitudeFeatures()`](https://x-biosignal.github.io/PhysioEMG/reference/emgAmplitudeFeatures.md)
@@ -88,6 +90,8 @@
   : Set SENIAM Electrode Metadata
 - [`spaceByTimeSynergy()`](https://x-biosignal.github.io/PhysioEMG/reference/spaceByTimeSynergy.md)
   : Space-by-time muscle synergy decomposition (sNM3F)
+- [`splitHalfStability()`](https://x-biosignal.github.io/PhysioEMG/reference/splitHalfStability.md)
+  : Split-half stability of inter-muscle coordination networks
 - [`synergyCompare()`](https://x-biosignal.github.io/PhysioEMG/reference/synergyCompare.md)
   : Compare Two Synergy Results
 - [`synergyReconstruct()`](https://x-biosignal.github.io/PhysioEMG/reference/synergyReconstruct.md)
