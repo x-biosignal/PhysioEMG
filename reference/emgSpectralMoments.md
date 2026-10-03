@@ -71,3 +71,18 @@ for median and mean frequency tracking,
 for summary fatigue metric,
 [`emgEnvelope()`](https://x-biosignal.github.io/PhysioEMG/reference/emgEnvelope.md)
 for time-domain amplitude analysis
+
+## Examples
+
+``` r
+pe <- make_emg_fatigue(n_time = 10000, sr = 1000)
+sm <- emgSpectralMoments(pe, window_sec = 1.0)
+head(sm)
+#>   channel window       m0       m1      m2
+#> 1       1      1 44.01779 6658.242 1707670
+#> 2       1      2 45.21600 6962.068 1797298
+#> 3       1      3 42.96837 6748.368 1786980
+#> 4       1      4 42.65274 6505.444 1739663
+#> 5       1      5 45.46966 6868.128 1832330
+#> 6       1      6 45.33071 7076.748 1931638
+```

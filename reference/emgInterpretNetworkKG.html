@@ -11,7 +11,7 @@ from PhysioAnnotationHub/physioKG workflows."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">PhysioEMG</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -132,6 +132,17 @@ If NULL, uses the mean across windows.</p></dd>
 
 </dl></div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">pe</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_emg.html">make_emg</a></span><span class="op">(</span>n_time <span class="op">=</span> <span class="fl">2000</span>, n_channels <span class="op">=</span> <span class="fl">4</span>, sr <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">net</span> <span class="op">&lt;-</span> <span class="fu"><a href="emgCoherenceNetwork.html">emgCoherenceNetwork</a></span><span class="op">(</span><span class="va">pe</span>, freq_band <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">150</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">interp</span> <span class="op">&lt;-</span> <span class="fu">emgInterpretNetworkKG</span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network</span>, top_n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">interp</span><span class="op">$</span><span class="va">edge_table</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   source target    weight</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   EMG1   EMG3 0.1888128</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   EMG1   EMG4 0.1815934</span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

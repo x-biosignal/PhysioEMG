@@ -37,8 +37,9 @@ for whole-muscle synergy decomposition.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-sim <- PhysioHDEMG::make_hdemg_sim(n_units = 2, duration_sec = 3)
-dec <- hdEMGDecompose(sim, n_units = 4)
-} # }
+# Requires the optional PhysioHDEMG backend (Suggests).
+if (requireNamespace("PhysioHDEMG", quietly = TRUE)) {
+  sim <- PhysioHDEMG::make_hdemg_sim(n_units = 2, duration_sec = 1)
+  dec <- hdEMGDecompose(sim, n_units = 4)
+}
 ```

@@ -85,3 +85,16 @@ A list with:
 
 [`emgCoherenceNetwork()`](https://x-biosignal.github.io/PhysioEMG/reference/emgCoherenceNetwork.md),
 [`emgPartialCoherenceNetwork()`](https://x-biosignal.github.io/PhysioEMG/reference/emgPartialCoherenceNetwork.md)
+
+## Examples
+
+``` r
+pe <- make_emg(n_time = 2000, n_channels = 4, sr = 1000)
+res <- emgWPLINetwork(pe, freq_band = c(20, 150))
+res$network
+#>           EMG1      EMG2      EMG3      EMG4
+#> EMG1 1.0000000 0.3437326 0.4978428 0.4061486
+#> EMG2 0.3437326 1.0000000 0.4317750 0.3204463
+#> EMG3 0.4978428 0.4317750 1.0000000 0.4693897
+#> EMG4 0.4061486 0.3204463 0.4693897 1.0000000
+```

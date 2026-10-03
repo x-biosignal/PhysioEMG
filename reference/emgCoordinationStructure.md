@@ -75,3 +75,36 @@ A list with:
 
 [`emgCoherenceNetwork()`](https://x-biosignal.github.io/PhysioEMG/reference/emgCoherenceNetwork.md),
 [`emgDynamicWaveletNetwork()`](https://x-biosignal.github.io/PhysioEMG/reference/emgDynamicWaveletNetwork.md)
+
+## Examples
+
+``` r
+pe <- make_emg(n_time = 2000, n_channels = 4, sr = 1000)
+net <- emgCoherenceNetwork(pe, freq_band = c(20, 150))
+cs <- emgCoordinationStructure(net)
+cs$summary
+#> $n_nodes
+#> [1] 4
+#> 
+#> $n_edges
+#> [1] 6
+#> 
+#> $density
+#> [1] 1
+#> 
+#> $mean_edge_weight
+#> [1] 0.779085
+#> 
+#> $global_efficiency
+#> [1] 0.779085
+#> 
+#> $mean_clustering
+#> [1] 0.7673964
+#> 
+#> $modularity
+#> [1] -0.09834864
+#> 
+#> $n_modules
+#> [1] 2
+#> 
+```

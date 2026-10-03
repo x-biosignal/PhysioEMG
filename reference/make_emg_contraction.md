@@ -83,5 +83,5 @@ pe
 onset <- emgOnsetDetect(pe)
 onset$onsets
 #>   channel sample time_sec
-#> 1       1   1489    1.488
+#> 1       1   1488    1.487
 ```

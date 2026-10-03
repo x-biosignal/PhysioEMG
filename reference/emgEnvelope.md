@@ -71,3 +71,12 @@ for normalizing envelope values,
 for onset detection from envelope data,
 [`emgFatigue()`](https://x-biosignal.github.io/PhysioEMG/reference/emgFatigue.md)
 for fatigue analysis using spectral features
+
+## Examples
+
+``` r
+pe <- make_emg(n_time = 2000, n_channels = 4, sr = 1000)
+pe <- emgEnvelope(pe, method = "rms", window_ms = 50)
+dim(SummarizedExperiment::assay(pe, "envelope"))
+#> [1] 2000    4
+```

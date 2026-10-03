@@ -55,3 +55,14 @@ A data frame (class `split_half_stability`), one row per method, with
 
 [`coordinationNetwork()`](https://x-biosignal.github.io/PhysioEMG/reference/coordinationNetwork.md),
 [`emgCoordinationStructure()`](https://x-biosignal.github.io/PhysioEMG/reference/emgCoordinationStructure.md)
+
+## Examples
+
+``` r
+pe <- make_emg(n_time = 2000, n_channels = 4, sr = 1000)
+splitHalfStability(pe, methods = "coherence", freq_band = c(20, 150))
+#>      method split_half_edge_correlation split_half_node_strength_correlation
+#> 1 coherence                   0.4699161                            0.5115727
+#>   first_half_mean_edge second_half_mean_edge
+#> 1            0.4870532             0.3375243
+```

@@ -13,7 +13,7 @@ percent overlap, then the initial and final portions are compared."></head><body
 
     <a class="navbar-brand me-2" href="../index.html">PhysioEMG</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -127,6 +127,14 @@ doi:10.1002/0471678384</p>
 <code><a href="emgEnvelope.html">emgEnvelope()</a></code> for amplitude envelope extraction</p></div>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">pe</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_emg_fatigue.html">make_emg_fatigue</a></span><span class="op">(</span>n_time <span class="op">=</span> <span class="fl">10000</span>, sr <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">emgFatigueIndex</span><span class="op">(</span><span class="va">pe</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   channel fatigue_index initial_mdf final_mdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1       1     0.6057692          78     47.25</span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

@@ -100,7 +100,7 @@ pe <- PhysioExperiment(assays = list(raw = matrix(sig, ncol = 1)),
                        samplingRate = sr)
 emgFatigueSlope(pe, feature = "mdf")
 #>   channel slope_hz_per_min norm_slope_pct_per_min intercept_hz r_squared
-#> 1       1        -179.5714              -202.8101     88.54167 0.9969317
+#> 1       1        -183.8571              -207.0658     88.79167  0.997505
 #>        p_value
-#> 1 1.004725e-17
+#> 1 2.618598e-18
 ```

@@ -76,3 +76,18 @@ for a summary fatigue metric,
 for spectral moment analysis,
 [`emgEnvelope()`](https://x-biosignal.github.io/PhysioEMG/reference/emgEnvelope.md)
 for amplitude envelope extraction
+
+## Examples
+
+``` r
+pe <- make_emg_fatigue(n_time = 10000, sr = 1000)
+fat <- emgFatigue(pe, window_sec = 1.0)
+head(fat)
+#>   channel window time_sec median_freq mean_freq rms_amplitude
+#> 1       1      1      0.0          80  157.8732     0.2815291
+#> 2       1      2      0.5          80  157.0243     0.2885262
+#> 3       1      3      1.0          76  153.3099     0.2915280
+#> 4       1      4      1.5          76  152.7389     0.2865469
+#> 5       1      5      2.0          72  150.8788     0.2903286
+#> 6       1      6      2.5          72  150.1204     0.2960479
+```

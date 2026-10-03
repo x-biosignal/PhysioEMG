@@ -41,3 +41,15 @@ doi:10.1002/0471678384
 for computing synergy decompositions,
 [`synergyReconstruct()`](https://x-biosignal.github.io/PhysioEMG/reference/synergyReconstruct.md)
 for reconstructing data from synergies
+
+## Examples
+
+``` r
+pe <- make_emg(n_time = 2000, n_channels = 4, sr = 1000)
+s1 <- muscleSynergy(pe, n_synergies = 2, method = "nmf", seed = 1)
+s2 <- muscleSynergy(pe, n_synergies = 2, method = "nmf", seed = 2)
+synergyCompare(s1, s2)
+#>   synergy1 synergy2 correlation
+#> 1        1        1   0.9999479
+#> 2        2        2   0.9999337
+```

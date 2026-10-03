@@ -17,7 +17,7 @@ the underlying estimator. Use it (with splitHalfStability()) to answer
 
     <a class="navbar-brand me-2" href="../index.html">PhysioEMG</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -146,6 +146,18 @@ inter-muscle adjacency matrix.</p>
 <code><a href="emgCoherenceNetwork.html">emgCoherenceNetwork()</a></code></p></div>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">pe</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_emg.html">make_emg</a></span><span class="op">(</span>n_time <span class="op">=</span> <span class="fl">2000</span>, n_channels <span class="op">=</span> <span class="fl">4</span>, sr <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">net</span> <span class="op">&lt;-</span> <span class="fu">coordinationNetwork</span><span class="op">(</span><span class="va">pe</span>, method <span class="op">=</span> <span class="st">"coherence"</span>, freq_band <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">150</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">net</span><span class="op">$</span><span class="va">network</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           EMG1      EMG2      EMG3      EMG4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> EMG1 1.0000000 0.1807600 0.1152781 0.1406955</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> EMG2 0.1807600 1.0000000 0.1248851 0.1637571</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> EMG3 0.1152781 0.1248851 1.0000000 0.1360003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> EMG4 0.1406955 0.1637571 0.1360003 1.0000000</span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

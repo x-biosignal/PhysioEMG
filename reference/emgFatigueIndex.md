@@ -70,3 +70,12 @@ for detailed windowed fatigue tracking,
 for spectral moment analysis,
 [`emgEnvelope()`](https://x-biosignal.github.io/PhysioEMG/reference/emgEnvelope.md)
 for amplitude envelope extraction
+
+## Examples
+
+``` r
+pe <- make_emg_fatigue(n_time = 10000, sr = 1000)
+emgFatigueIndex(pe)
+#>   channel fatigue_index initial_mdf final_mdf
+#> 1       1     0.6057692          78     47.25
+```

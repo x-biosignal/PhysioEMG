@@ -107,3 +107,13 @@ A list with:
 for static spectral network,
 [`emgInterpretNetworkKG()`](https://x-biosignal.github.io/PhysioEMG/reference/emgInterpretNetworkKG.md)
 for annotation-aware interpretation.
+
+## Examples
+
+``` r
+pe <- make_emg(n_time = 1000, n_channels = 3, sr = 1000)
+res <- emgDynamicWaveletNetwork(pe, frequencies = seq(20, 100, by = 20),
+                                window_sec = 0.25, step_sec = 0.1)
+dim(res$network)  # windows x channels x channels
+#> [1] 8 3 3
+```

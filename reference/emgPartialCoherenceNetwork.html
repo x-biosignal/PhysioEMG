@@ -9,7 +9,7 @@ the inverse cross-spectral density matrix at each frequency."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">PhysioEMG</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -142,6 +142,18 @@ the inverse cross-spectral density matrix at each frequency.</p>
     <div class="dont-index"><p><code><a href="emgCoherenceNetwork.html">emgCoherenceNetwork()</a></code>, <code><a href="emgWPLINetwork.html">emgWPLINetwork()</a></code></p></div>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">pe</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_emg.html">make_emg</a></span><span class="op">(</span>n_time <span class="op">=</span> <span class="fl">2000</span>, n_channels <span class="op">=</span> <span class="fl">4</span>, sr <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">emgPartialCoherenceNetwork</span><span class="op">(</span><span class="va">pe</span>, freq_band <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">150</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">res</span><span class="op">$</span><span class="va">network</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           EMG1      EMG2      EMG3      EMG4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> EMG1 1.0000000 0.2264374 0.2042632 0.2311192</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> EMG2 0.2264374 1.0000000 0.1870111 0.1448351</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> EMG3 0.2042632 0.1870111 1.0000000 0.2229306</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> EMG4 0.2311192 0.1448351 0.2229306 1.0000000</span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

@@ -76,7 +76,7 @@ set.seed(1)
 n <- 1000; t <- seq_len(n)
 ag <- exp(-((t - 500) / 150)^2) + rnorm(n, 0, 0.02)     # agonist burst
 an <- 0.2 * exp(-((t - 500) / 150)^2) + rnorm(n, 0, 0.02) # low antagonist
-pe <- PhysioCore::PhysioExperiment(
+pe <- PhysioExperiment::PhysioExperiment(
   assays = S4Vectors::SimpleList(envelope = cbind(BIC = ag, TRI = an)),
   colData = S4Vectors::DataFrame(label = c("BIC", "TRI"), type = "EMG"),
   samplingRate = 1000)

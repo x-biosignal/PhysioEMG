@@ -53,7 +53,7 @@ A `"synergy_mixture"` object.
 ``` r
 set.seed(1)
 mk <- function(L) {
-  pe <- PhysioCore::PhysioExperiment(
+  pe <- PhysioExperiment::PhysioExperiment(
     assays = list(raw = t(L %*% matrix(rnorm(2 * 50), 2, 50) +
                           matrix(rnorm(6 * 50, 0, .3), 6, 50))),
     samplingRate = 100)

@@ -83,3 +83,16 @@ A list with:
 for time-varying networks,
 [`emgInterpretNetworkKG()`](https://x-biosignal.github.io/PhysioEMG/reference/emgInterpretNetworkKG.md)
 for annotation-aware interpretation.
+
+## Examples
+
+``` r
+pe <- make_emg(n_time = 2000, n_channels = 4, sr = 1000)
+res <- emgCoherenceNetwork(pe, freq_band = c(20, 150))
+res$network
+#>           EMG1      EMG2      EMG3      EMG4
+#> EMG1 1.0000000 0.1262567 0.1988403 0.1844895
+#> EMG2 0.1262567 1.0000000 0.1402528 0.1344573
+#> EMG3 0.1988403 0.1402528 1.0000000 0.1735352
+#> EMG4 0.1844895 0.1344573 0.1735352 1.0000000
+```

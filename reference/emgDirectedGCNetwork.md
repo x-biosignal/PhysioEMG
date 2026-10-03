@@ -75,3 +75,16 @@ A list with:
 - lag:
 
   Lag order used for modeling.
+
+## Examples
+
+``` r
+pe <- make_emg(n_time = 2000, n_channels = 4, sr = 1000)
+res <- emgDirectedGCNetwork(pe, max_lag = 5)
+res$network
+#>          EMG1      EMG2      EMG3     EMG4
+#> EMG1 0.000000 3.3421045 4.9050805 2.508087
+#> EMG2 5.342390 0.0000000 0.8378886 2.237689
+#> EMG3 2.355595 1.7247195 0.0000000 1.201503
+#> EMG4 4.071673 0.9506827 3.2564382 0.000000
+```

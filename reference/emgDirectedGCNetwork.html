@@ -9,7 +9,7 @@ causality in the time domain."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">PhysioEMG</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -133,6 +133,18 @@ causality in the time domain.</p>
 
 </dl></div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">pe</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_emg.html">make_emg</a></span><span class="op">(</span>n_time <span class="op">=</span> <span class="fl">2000</span>, n_channels <span class="op">=</span> <span class="fl">4</span>, sr <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">emgDirectedGCNetwork</span><span class="op">(</span><span class="va">pe</span>, max_lag <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">res</span><span class="op">$</span><span class="va">network</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          EMG1      EMG2      EMG3     EMG4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> EMG1 0.000000 3.3421045 4.9050805 2.508087</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> EMG2 5.342390 0.0000000 0.8378886 2.237689</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> EMG3 2.355595 1.7247195 0.0000000 1.201503</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> EMG4 4.071673 0.9506827 3.2564382 0.000000</span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

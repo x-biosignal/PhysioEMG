@@ -80,3 +80,16 @@ inter-muscle adjacency matrix.
 [`splitHalfStability()`](https://x-biosignal.github.io/PhysioEMG/reference/splitHalfStability.md),
 [`emgCoordinationStructure()`](https://x-biosignal.github.io/PhysioEMG/reference/emgCoordinationStructure.md),
 [`emgCoherenceNetwork()`](https://x-biosignal.github.io/PhysioEMG/reference/emgCoherenceNetwork.md)
+
+## Examples
+
+``` r
+pe <- make_emg(n_time = 2000, n_channels = 4, sr = 1000)
+net <- coordinationNetwork(pe, method = "coherence", freq_band = c(20, 150))
+net$network
+#>           EMG1      EMG2      EMG3      EMG4
+#> EMG1 1.0000000 0.1807600 0.1152781 0.1406955
+#> EMG2 0.1807600 1.0000000 0.1248851 0.1637571
+#> EMG3 0.1152781 0.1248851 1.0000000 0.1360003
+#> EMG4 0.1406955 0.1637571 0.1360003 1.0000000
+```

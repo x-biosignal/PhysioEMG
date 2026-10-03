@@ -1,5 +1,23 @@
 # Changelog
 
+## PhysioEMG 0.4.2
+
+### Documentation
+
+- Runnable `@examples` added or corrected across 22 help pages. Each
+  runs offline in seconds, writes nothing outside
+  [`tempdir()`](https://rdrr.io/r/base/tempfile.html), and is executed
+  by `R CMD check`; anything needing a device, a download or an optional
+  backend is fenced with the reason stated.
+- The README’s quick start runs as written: it attaches the package,
+  builds its own inputs, and uses only hard dependencies.
+
+### Bug fixes
+
+- `importFrom(stats, embed)` was in NAMESPACE with no backing roxygen
+  tag, so regenerating would have dropped it silently. The tag is now in
+  the source.
+
 ## PhysioEMG 0.4.1
 
 - [`coordinationNetwork()`](https://x-biosignal.github.io/PhysioEMG/reference/coordinationNetwork.md):

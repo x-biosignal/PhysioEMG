@@ -96,3 +96,14 @@ for model-order (synergy count) selection,
 for reconstructing data from synergies,
 [`synergyCompare()`](https://x-biosignal.github.io/PhysioEMG/reference/synergyCompare.md)
 for comparing synergy solutions
+
+## Examples
+
+``` r
+pe <- make_emg(n_time = 2000, n_channels = 4, sr = 1000)
+syn <- muscleSynergy(pe, n_synergies = 2, method = "nmf", seed = 1)
+syn$vaf
+#> [1] 0.7020948
+dim(syn$W)  # n_synergies x channels
+#> [1] 2 4
+```

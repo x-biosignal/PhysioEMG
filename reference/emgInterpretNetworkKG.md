@@ -72,3 +72,15 @@ A list with:
 - kg_relation_summary:
 
   Relation counts from matched KG links, or NULL.
+
+## Examples
+
+``` r
+pe <- make_emg(n_time = 2000, n_channels = 4, sr = 1000)
+net <- emgCoherenceNetwork(pe, freq_band = c(20, 150))
+interp <- emgInterpretNetworkKG(net$network, top_n = 5)
+interp$edge_table
+#>   source target    weight
+#> 1   EMG1   EMG3 0.1888128
+#> 2   EMG1   EMG4 0.1815934
+```
